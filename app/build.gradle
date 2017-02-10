@@ -19,13 +19,34 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
-	
+
 	sourceSets {
 		main.java.srcDirs += 'src/main/kotlin'
 	}
 }
 
+ext {
+	retrofitGroup = 'com.squareup.retrofit2'
+	rxjavaGroup = 'io.reactivex'
+
+	supportLibraryVersion = '25.1.1'
+	retrofitVersion = '2.1.0'
+	okhttpVersion = '3.5.0'
+	gsonVersion = '2.8.0'
+	rxjavaVersion = '1.2.6'
+	rxandroidVersion = '1.2.1'
+}
+
 dependencies {
-	compile 'com.android.support:appcompat-v7:25.1.1'
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+	compile "$retrofitGroup:retrofit:$retrofitVersion"
+	compile "$retrofitGroup:adapter-rxjava:$retrofitVersion"
+	compile "$retrofitGroup:converter-gson:$retrofitVersion"
+	compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+	compile "com.google.code.gson:gson:$gsonVersion"
+
+	compile "$rxjavaGroup:rxandroid:$rxandroidVersion"
+	compile "$rxjavaGroup:rxjava:$rxjavaVersion"
 }
