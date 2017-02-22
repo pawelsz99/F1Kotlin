@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         DaggerAppComponent.builder().backendModule(BackendModule()).build().inject(this)
 
-        val subscription = backend.getSeasonByYear("2017")
+        val subscription = backend.getRacesByYear("2017")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap({ Observable.from(it.mrData.raceTable.races) })

@@ -10,5 +10,5 @@ import rx.Observable
 interface Backend {
 
     @GET("{year}.json")
-    fun getSeasonByYear(@Path("year") year: String): Observable<SeasonResponse>
+    fun getRacesByYear(@Path("year") year: String): Observable<SeasonResponse>
 }
