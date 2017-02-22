@@ -2,9 +2,9 @@ package can.siempredelao.f1kotlin.backend;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SeasonResponse {
+public class RacesBySeasonResponse {
 
     @SerializedName("MRData")
-    public MRData mrData;
+    public MRDataRaces mrData;
 
 }

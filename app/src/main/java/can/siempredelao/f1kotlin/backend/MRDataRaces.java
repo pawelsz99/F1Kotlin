@@ -2,7 +2,7 @@ package can.siempredelao.f1kotlin.backend;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MRData {
+public class MRDataRaces {
 
     public String xmlns;
     public String series;

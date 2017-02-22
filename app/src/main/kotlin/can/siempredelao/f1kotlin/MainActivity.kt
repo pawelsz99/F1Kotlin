@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity() {
 
         DaggerAppComponent.builder().backendModule(BackendModule()).build().inject(this)
 
-        val subscription = backend.getRacesByYear("2017")
+        val subscription = backend.getRacesBySeason("2017")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap({ Observable.from(it.mrData.raceTable.races) })
                 .subscribe({ race ->
-                               textView11.text = textView11.text.toString().plus(race.circuit.circuitName).plus("\n\n")
+                               textView11.text = textView11.text.toString().plus(race.raceName).plus(" > ").plus(race.circuit.circuitName).plus("\n\n")
                            },
                            { throwable -> Log.i("MainActivity", "onError " + throwable.message) })
 
