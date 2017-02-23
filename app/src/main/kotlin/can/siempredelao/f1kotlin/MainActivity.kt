@@ -2,12 +2,15 @@ package can.siempredelao.f1kotlin
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.TextView
+import android.view.View
+import android.widget.AdapterView
 import can.siempredelao.f1kotlin.backend.Backend
 import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     val compositeSubscription = CompositeSubscription()
 
-    val textView11 by lazy { find<TextView>(R.id.textview) }
+    lateinit var racesAdapter: RacesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +32,24 @@ class MainActivity : AppCompatActivity() {
 
         DaggerAppComponent.builder().backendModule(BackendModule()).build().inject(this)
 
+        with(rvRaces) {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            racesAdapter = RacesAdapter(object : RacesAdapter.OnRaceItemClickListener {
+                override fun onRaceClick(season: String, round: String) {
+                    // TODO open race details
+                    toast("Risas y fiestas")
+                }
+            })
+            adapter = racesAdapter
+        }
+
         val subscription = backend.getRacesBySeason("2017")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap({ Observable.from(it.mrData.raceTable.races) })
                 .subscribe({ race ->
-                               textView11.text = textView11.text.toString().plus(race.raceName).plus(" > ").plus(race.circuit.circuitName).plus("\n\n")
+                               racesAdapter.addItem(race)
                            },
                            { throwable -> Log.i("MainActivity", "onError " + throwable.message) })
 
@@ -46,3 +61,4 @@ class MainActivity : AppCompatActivity() {
         compositeSubscription.unsubscribe()
     }
 }
+
