@@ -9,53 +9,53 @@ import rx.Observable
  */
 interface Backend {
 
-    @GET("{season}.json")
+    @GET("{season}")
     fun getRacesBySeason(@Path("season") season: String): Observable<RaceResponse>
 
-    @GET("{season}/{round}.json")
+    @GET("{season}/{round}")
     fun getRaceInfo(@Path("season") season: String, @Path("round") round: String): Observable<RaceResponse>
 
-    @GET("{season}/{round}/results.json")
+    @GET("{season}/{round}/results")
     fun getFullRaceResults(@Path("season") season: String,
                            @Path("round") round: String): Observable<RaceResponse>
 
     // { 1 -> Winner, 2 -> Second, 3 -> Third } in podium
-    @GET("{season}/{round}/results/{position}.json")
+    @GET("{season}/{round}/results/{position}")
     fun getRaceResultsByPosition(@Path("season") season: String,
                                  @Path("round") round: String): Observable<RaceResponse>
 
-    @GET("{season}/{round}/grid/1/qualifying.json")
+    @GET("{season}/{round}/grid/1/qualifying")
     fun getRacePole(@Path("season") season: String, @Path("round") round: String): Observable<RaceResponse>
 
-    @GET("{season}/{round}/fastest/1/results.json")
+    @GET("{season}/{round}/fastest/1/results")
     fun getRaceFastestLap(@Path("season") season: String, @Path("round") round: String): Observable<RaceResponse>
 
 
-    @GET("drivers/{driverId}.json")
+    @GET("drivers/{driverId}")
     fun getDriverInfo(@Path("driverId") driverId: String): Observable<DriverResponse>
 
-    @GET("drivers/{driverId}/results/1.json")
+    @GET("drivers/{driverId}/results/1")
     fun getDriverVictoriesOverall(@Path("driverId") driverId: String): Observable<RaceResponse>
 
-    @GET("{season}/drivers/{driverId}/results/1.json")
+    @GET("{season}/drivers/{driverId}/results/1")
     fun getDriverVictoriesBySeason(@Path("season") season: String,
                                    @Path("driverId") driverId: String): Observable<RaceResponse>
 
-    @GET("drivers/{driverId}/grid/1/results.json")
+    @GET("drivers/{driverId}/grid/1/results")
     fun getDriverPolesOverall(@Path("driverId") driverId: String): Observable<RaceResponse>
 
-    @GET("{season}/drivers/{driverId}/grid/1/results.json")
+    @GET("{season}/drivers/{driverId}/grid/1/results")
     fun getDriverPolesBySeason(@Path("season") season: String,
                                @Path("driverId") driverId: String): Observable<RaceResponse>
 
-    @GET("drivers/{driverId}/driverStandings/1.json")
+    @GET("drivers/{driverId}/driverStandings/1")
     fun getDriverChampionships(@Path("driverId") driverId: String): Observable<StandingsResponse>
 
 
-    @GET("constructors/{constructorId}.json")
+    @GET("constructors/{constructorId}")
     fun getManufacturerInfo(@Path("constructorId") constructorId: String): Observable<ManufacturerResponse>
 
-    @GET("constructors/{constructorId}/results/1.json")
+    @GET("constructors/{constructorId}/results/1")
     fun getManufacturerVictoriesOverall(@Path("constructorId") constructorId: String): Observable<RaceResponse>
 
 

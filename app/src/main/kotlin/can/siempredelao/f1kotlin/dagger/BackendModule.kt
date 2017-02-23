@@ -37,7 +37,23 @@ class BackendModule {
                 .build()
     }
 
-    private fun okHttpClient() = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().setLevel(BODY)).build()
+    private fun okHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(BODY))
+                .addInterceptor({
+                                    // Hack to add ".json" to all requests
+                                    val url = it.request().url()
+                                    val lastEncodedPathSegment = url.encodedPathSegments()[url.encodedPathSegments().size - 1]
+                                    val modifiedLastEncodedPathSegment = lastEncodedPathSegment.plus(".json")
+
+                                    val urlJsonAppended = url.newBuilder()
+                                            .removePathSegment(url.encodedPathSegments().size - 1)
+                                            .addEncodedPathSegments(modifiedLastEncodedPathSegment).build()
+                                    val requestJsonAppended = it.request().newBuilder().url(urlJsonAppended).build()
+                                    it.proceed(requestJsonAppended)
+                                })
+                .build()
+    }
 
     private fun gson() = GsonBuilder().serializeNulls().create()
 }
