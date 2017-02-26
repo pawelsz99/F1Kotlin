@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import can.siempredelao.f1kotlin.backend.Backend
 import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.toast
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -37,8 +34,7 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             racesAdapter = RacesAdapter(object : RacesAdapter.OnRaceItemClickListener {
                 override fun onRaceClick(season: String, round: String) {
-                    // TODO open race details
-                    toast("Risas y fiestas")
+                    startActivity(RaceDetailsActivity.openRaceDetailsIntent(season, round, this@MainActivity))
                 }
             })
             adapter = racesAdapter

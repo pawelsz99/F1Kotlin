@@ -1,6 +1,7 @@
 package can.siempredelao.f1kotlin.dagger
 
 import can.siempredelao.f1kotlin.MainActivity
+import can.siempredelao.f1kotlin.RaceDetailsActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,4 +13,5 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(activity: MainActivity)
+    fun inject(activity: RaceDetailsActivity)
 }
