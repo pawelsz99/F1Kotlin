@@ -5,8 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import can.siempredelao.f1kotlin.backend.Race
+import can.siempredelao.f1kotlin.backend.model.Race
 import kotlinx.android.synthetic.main.view_race_item.view.*
 import java.util.ArrayList
 

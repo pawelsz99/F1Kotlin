@@ -1,5 +1,9 @@
 package can.siempredelao.f1kotlin.backend
 
+import can.siempredelao.f1kotlin.backend.model.DriverResponse
+import can.siempredelao.f1kotlin.backend.model.ManufacturerResponse
+import can.siempredelao.f1kotlin.backend.model.RaceResponse
+import can.siempredelao.f1kotlin.backend.model.StandingsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import rx.Observable
