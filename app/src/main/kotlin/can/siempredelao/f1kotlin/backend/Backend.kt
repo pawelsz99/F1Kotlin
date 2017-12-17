@@ -27,7 +27,7 @@ interface Backend {
                                  @Path("round") round: String): Observable<RaceResponse>
 
     @GET("{season}/{round}/grid/1/qualifying")
-    fun getRacePole(@Path("season") season: String, @Path("round") round: String): Observable<RaceResponse>
+    fun getRacePole(@Path("season") season: String, @Path("round") round: String): Single<RaceResponse>
 
     @GET("{season}/{round}/fastest/1/results")
     fun getRaceFastestLap(@Path("season") season: String, @Path("round") round: String): Observable<RaceResponse>

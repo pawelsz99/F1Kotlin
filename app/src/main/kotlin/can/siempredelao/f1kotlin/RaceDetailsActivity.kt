@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import can.siempredelao.f1kotlin.backend.Backend
+import can.siempredelao.f1kotlin.backend.model.Race
 import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -50,29 +51,48 @@ class RaceDetailsActivity : AppCompatActivity() {
             finish()
         }
 
-
         val subscription = backend.getRaceInfo(season, round)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.mrData.raceTable.races }
                 .filter({ it.isNotEmpty() })
                 .map { it[0] }
-                .subscribe({ race ->
-                               tvRace.text = race.raceName
-                               tvCircuit.text = race.circuit.circuitName
-                               tvDatetime.text = race.date.plus(" @ ").plus(race.time)
-                               tvRound.text = race.round
-                               tvGeoInfo.text = race.circuit.location.lat.plus(", ").plus(race.circuit.location._long)
-                               tvGeoInfo.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW,
-                                                                                   Uri.parse(String.format("geo:%s,%s",
-                                                                                                           race.circuit.location.lat,
-                                                                                                           race.circuit.location._long))))
-                               }
-                               tvPlace.text = race.circuit.location.locality.plus(", ").plus(race.circuit.location.country)
-                           },
-                           { throwable -> Log.i("RaceDetailsActivity", "onError " + throwable.message) })
+                .doOnSuccess {
+                    backend.getRacePole(season, round)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .map { it.mrData.raceTable.races }
+                            .filter({ it.isNotEmpty() })
+                            .map { it[0] }
+                            .subscribe(this::showPoleman, this::showError)
+                }
+                .subscribe(this::showRace, this::showError)
 
         compositeDisposable.add(subscription)
+    }
+
+    private fun showRace(race: Race) {
+        tvRace.text = race.raceName
+        tvCircuit.text = race.circuit.circuitName
+        tvDatetime.text = race.date.plus(" @ ").plus(race.time)
+        tvRound.text = race.round
+        tvGeoInfo.text = race.circuit.location.lat.plus(", ").plus(race.circuit.location._long)
+        tvGeoInfo.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW,
+                                 Uri.parse(String.format("geo:%s,%s",
+                                                         race.circuit.location.lat,
+                                                         race.circuit.location._long))))
+        }
+        tvPlace.text = race.circuit.location.locality.plus(", ").plus(race.circuit.location.country)
+    }
+
+    fun showPoleman(poleDriver: Race) {
+        val driver = poleDriver.qualifyingResults[0].driver
+        toast("Poleman: ${driver.givenName} ${driver.familyName}")
+    }
+
+    fun showError(throwable: Throwable) {
+        Log.i("RaceDetailsActivity", "onError " + throwable.message)
     }
 
     override fun onDestroy() {
