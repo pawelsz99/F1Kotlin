@@ -5,16 +5,16 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import can.siempredelao.f1kotlin.backend.Backend
 import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_racedetails.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
 class RaceDetailsActivity : AppCompatActivity() {
@@ -31,10 +31,10 @@ class RaceDetailsActivity : AppCompatActivity() {
     @Inject
     lateinit var backend: Backend
 
-    val compositeSubscription = CompositeSubscription()
+    private val compositeDisposable = CompositeDisposable()
 
-    lateinit var season: String
-    lateinit var round: String
+    private lateinit var season: String
+    private lateinit var round: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +54,9 @@ class RaceDetailsActivity : AppCompatActivity() {
         val subscription = backend.getRaceInfo(season, round)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap({ Observable.from(it.mrData.raceTable.races) })
-                .first()
+                .map { it.mrData.raceTable.races }
+                .filter({ it.isNotEmpty() })
+                .map { it[0] }
                 .subscribe({ race ->
                                tvRace.text = race.raceName
                                tvCircuit.text = race.circuit.circuitName
@@ -68,13 +69,14 @@ class RaceDetailsActivity : AppCompatActivity() {
                                                                                                            race.circuit.location._long))))
                                }
                                tvPlace.text = race.circuit.location.locality.plus(", ").plus(race.circuit.location.country)
-                           })
+                           },
+                           { throwable -> Log.i("RaceDetailsActivity", "onError " + throwable.message) })
 
-        compositeSubscription.add(subscription)
+        compositeDisposable.add(subscription)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeSubscription.unsubscribe()
+        compositeDisposable.dispose()
     }
 }

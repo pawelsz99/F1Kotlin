@@ -8,13 +8,10 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-/**
- * Created by david on 10.02.17.
- */
 @Module
 class BackendModule {
 
@@ -31,7 +28,7 @@ class BackendModule {
     private fun retrofit(): Retrofit {
         return Retrofit.Builder()
                 .client(okHttpClient())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson()))
                 .baseUrl(ENDPOINT)
                 .build()

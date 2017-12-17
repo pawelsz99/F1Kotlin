@@ -7,11 +7,10 @@ import android.util.Log
 import can.siempredelao.f1kotlin.backend.Backend
 import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +18,9 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var backend: Backend
 
-    val compositeSubscription = CompositeSubscription()
+    private val compositeDisposable = CompositeDisposable()
 
-    lateinit var racesAdapter: RacesAdapter
+    private lateinit var racesAdapter: RacesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,18 +42,19 @@ class MainActivity : AppCompatActivity() {
         val subscription = backend.getRacesBySeason("2017")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap({ Observable.from(it.mrData.raceTable.races) })
-                .subscribe({ race ->
-                               racesAdapter.addItem(race)
+                .map { it.mrData.raceTable.races }
+                .filter({ it.isNotEmpty() })
+                .subscribe({ races ->
+                               racesAdapter.addItem(races)
                            },
                            { throwable -> Log.i("MainActivity", "onError " + throwable.message) })
 
-        compositeSubscription.add(subscription)
+        compositeDisposable.add(subscription)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeSubscription.unsubscribe()
+        compositeDisposable.dispose()
     }
 }
 

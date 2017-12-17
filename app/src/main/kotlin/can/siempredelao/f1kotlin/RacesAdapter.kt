@@ -17,8 +17,8 @@ class RacesAdapter(val onItemClickListener: OnRaceItemClickListener) : RecyclerV
 
     override fun getItemCount(): Int = raceList.size
 
-    fun addItem(race: Race) {
-        raceList.add(race)
+    fun addItem(races: List<Race>) {
+        raceList.addAll(races)
         notifyItemInserted(itemCount)
     }
 
