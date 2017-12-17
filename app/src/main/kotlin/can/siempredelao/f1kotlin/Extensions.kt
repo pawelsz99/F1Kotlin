@@ -12,7 +12,7 @@ fun ViewGroup.inflate(@StringRes layoutRes: Int): View {
 
 fun <T : RecyclerView.ViewHolder> T.onClick(event: (view: View, position: Int, type: Int) -> Unit): T {
     itemView.setOnClickListener {
-        event.invoke(it, getAdapterPosition(), getItemViewType())
+        event.invoke(it, adapterPosition, itemViewType)
     }
     return this
 }
