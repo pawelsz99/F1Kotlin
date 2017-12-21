@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             adapter = racesAdapter
         }
 
-        val subscription = backend.getRacesBySeason("2017")
+        backend.getRacesBySeason("2017")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.mrData.raceTable.races }
@@ -48,8 +48,7 @@ class MainActivity : AppCompatActivity() {
                                racesAdapter.addItem(races)
                            },
                            { throwable -> Log.i("MainActivity", "onError " + throwable.message) })
-
-        compositeDisposable.add(subscription)
+                .let { compositeDisposable.add(it) }
     }
 
     override fun onDestroy() {

@@ -51,7 +51,7 @@ class RaceDetailsActivity : AppCompatActivity() {
             finish()
         }
 
-        val subscription = backend.getRaceInfo(season, round)
+        backend.getRaceInfo(season, round)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.mrData.raceTable.races }
@@ -67,8 +67,7 @@ class RaceDetailsActivity : AppCompatActivity() {
                             .subscribe(this::showPoleman, this::showError)
                 }
                 .subscribe(this::showRace, this::showError)
-
-        compositeDisposable.add(subscription)
+                .let { compositeDisposable.add(it) }
     }
 
     private fun showRace(race: Race) {
