@@ -24,7 +24,8 @@ interface Backend {
     // { 1 -> Winner, 2 -> Second, 3 -> Third } in podium
     @GET("{season}/{round}/results/{position}")
     fun getRaceResultsByPosition(@Path("season") season: String,
-                                 @Path("round") round: String): Observable<RaceResponse>
+                                 @Path("round") round: String,
+                                 @Path("position") position: Int): Single<RaceResponse>
 
     @GET("{season}/{round}/grid/1/qualifying")
     fun getRacePole(@Path("season") season: String, @Path("round") round: String): Single<RaceResponse>

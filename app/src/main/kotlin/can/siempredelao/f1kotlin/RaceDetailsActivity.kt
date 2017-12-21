@@ -7,11 +7,16 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import can.siempredelao.f1kotlin.backend.Backend
+import can.siempredelao.f1kotlin.backend.model.Driver
 import can.siempredelao.f1kotlin.backend.model.Race
+import can.siempredelao.f1kotlin.backend.model.Result
 import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Function3
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_racedetails.*
 import org.jetbrains.anko.intentFor
@@ -58,16 +63,12 @@ class RaceDetailsActivity : AppCompatActivity() {
                 .filter({ it.isNotEmpty() })
                 .map { it[0] }
                 .doOnSuccess {
-                    backend.getRacePole(season, round)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .map { it.mrData.raceTable.races }
-                            .filter({ it.isNotEmpty() })
-                            .map { it[0] }
-                            .subscribe(this::showPoleman, this::showError)
+                    fetchPoleman()
+                    fetchPodium()
+                    fetchFastestLap()
                 }
                 .subscribe(this::showRace, this::showError)
-                .let { compositeDisposable.add(it) }
+                .toBeDisposed()
     }
 
     private fun showRace(race: Race) {
@@ -85,17 +86,64 @@ class RaceDetailsActivity : AppCompatActivity() {
         tvPlace.text = race.circuit.location.locality.plus(", ").plus(race.circuit.location.country)
     }
 
-    fun showPoleman(poleDriver: Race) {
-        val driver = poleDriver.qualifyingResults[0].driver
+    fun showError(throwable: Throwable) {
+        Log.i("RaceDetailsActivity", "onError " + throwable.message)
+    }
+
+    private fun fetchPoleman() {
+        backend.getRacePole(season, round)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { it.mrData.raceTable.races[0].qualifyingResults[0].driver }
+                .subscribe(this::showPoleman, this::showError)
+                .toBeDisposed()
+    }
+
+    fun showPoleman(driver: Driver) {
         toast("Poleman: ${driver.givenName} ${driver.familyName}")
     }
 
-    fun showError(throwable: Throwable) {
-        Log.i("RaceDetailsActivity", "onError " + throwable.message)
+    private fun fetchPodium() {
+        Single.zip(backend.getRaceResultsByPosition(season, round, 1)
+                           .map { it.mrData.raceTable.races[0].results[0] },
+                   backend.getRaceResultsByPosition(season, round, 2)
+                           .map { it.mrData.raceTable.races[0].results[0] },
+                   backend.getRaceResultsByPosition(season, round, 3)
+                           .map { it.mrData.raceTable.races[0].results[0] },
+                   Function3(this::packPodiumToList))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::showResults, this::showError)
+                .toBeDisposed()
+    }
+
+    private fun packPodiumToList(r1: Result, r2: Result, r3: Result) = listOf(r1, r2, r3)
+
+    private fun showResults(podiumList: List<Result>) {
+        for ((index, classified) in podiumList.withIndex()) {
+            toast("${index + 1} finished ${classified.driver.familyName}")
+        }
+    }
+
+    private fun fetchFastestLap() {
+        backend.getRaceFastestLap(season, round)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { it.mrData.raceTable.races[0].results[0] }
+                .subscribe(this::showFastestLap, this::showError)
+                .toBeDisposed()
+    }
+
+    private fun showFastestLap(result: Result) {
+        toast("Fastest lap: ${result.fastestLap.time} by ${result.driver.familyName}")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         compositeDisposable.dispose()
+    }
+
+    fun Disposable.toBeDisposed() {
+        compositeDisposable.add(this)
     }
 }

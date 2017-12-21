@@ -9,6 +9,7 @@ import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -48,12 +49,16 @@ class MainActivity : AppCompatActivity() {
                                racesAdapter.addItem(races)
                            },
                            { throwable -> Log.i("MainActivity", "onError " + throwable.message) })
-                .let { compositeDisposable.add(it) }
+                .toBeDisposed()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         compositeDisposable.dispose()
+    }
+
+    fun Disposable.toBeDisposed() {
+        compositeDisposable.add(this)
     }
 }
 
