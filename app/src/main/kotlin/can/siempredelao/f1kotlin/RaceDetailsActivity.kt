@@ -100,7 +100,7 @@ class RaceDetailsActivity : AppCompatActivity() {
     }
 
     fun showPoleman(driver: Driver) {
-        toast("Poleman: ${driver.givenName} ${driver.familyName}")
+        tvPole.text = "Poleman: ${driver.givenName} ${driver.familyName}"
     }
 
     private fun fetchPodium() {
@@ -120,9 +120,9 @@ class RaceDetailsActivity : AppCompatActivity() {
     private fun packPodiumToList(r1: Result, r2: Result, r3: Result) = listOf(r1, r2, r3)
 
     private fun showResults(podiumList: List<Result>) {
-        for ((index, classified) in podiumList.withIndex()) {
-            toast("${index + 1} finished ${classified.driver.familyName}")
-        }
+        tvFirstClassified.text = podiumList[0].driver.familyName
+        tvSecondClassified.text = podiumList[1].driver.familyName
+        tvThirdClassified.text = podiumList[2].driver.familyName
     }
 
     private fun fetchFastestLap() {
@@ -135,7 +135,7 @@ class RaceDetailsActivity : AppCompatActivity() {
     }
 
     private fun showFastestLap(result: Result) {
-        toast("Fastest lap: ${result.fastestLap.time} by ${result.driver.familyName}")
+        tvFastestLap.text = "Fastest lap: ${result.fastestLap.time} by ${result.driver.familyName}"
     }
 
     override fun onDestroy() {
