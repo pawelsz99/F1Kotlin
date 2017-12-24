@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">F1 Kotlin</string>
+    <string name="slow_internet_connection">Internet connection is slow</string>
 </resources>
