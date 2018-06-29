@@ -140,7 +140,7 @@ class RaceDetailsActivity : AppCompatActivity() {
     }
 
     private fun showFastestLap(result: Result) {
-        tvFastestLap.text = "Fastest lap: ${result.fastestLap.time} by ${result.driver.familyName}"
+        tvFastestLap.text = "Fastest lap: ${result.fastestLap.time.time} by ${result.driver.familyName}"
     }
 
     override fun onDestroy() {
