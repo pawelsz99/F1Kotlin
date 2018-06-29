@@ -10,6 +10,7 @@ import can.siempredelao.f1kotlin.backend.Backend
 import can.siempredelao.f1kotlin.backend.model.Driver
 import can.siempredelao.f1kotlin.backend.model.Race
 import can.siempredelao.f1kotlin.backend.model.Result
+import can.siempredelao.f1kotlin.dagger.AppModule
 import can.siempredelao.f1kotlin.dagger.BackendModule
 import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
 import io.reactivex.Single
@@ -46,7 +47,11 @@ class RaceDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_racedetails)
 
-        DaggerAppComponent.builder().backendModule(BackendModule()).build().inject(this)
+        DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .backendModule(BackendModule())
+                .build()
+                .inject(this)
 
         if (!intent.extras?.isEmpty!!) {
             season = intent.getStringExtra(SEASON_EXTRA_KEY)
