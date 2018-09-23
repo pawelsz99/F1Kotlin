@@ -4,15 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import androidx.core.os.bundleOf
+import androidx.core.widget.toast
 import can.siempredelao.f1kotlin.backend.Backend
 import can.siempredelao.f1kotlin.backend.model.Driver
 import can.siempredelao.f1kotlin.backend.model.Race
 import can.siempredelao.f1kotlin.backend.model.Result
-import can.siempredelao.f1kotlin.dagger.AppModule
-import can.siempredelao.f1kotlin.dagger.BackendModule
-import can.siempredelao.f1kotlin.dagger.DaggerAppComponent
+import can.siempredelao.f1kotlin.data.Clock
+import dagger.android.DaggerActivity
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -20,23 +20,27 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function3
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_racedetails.*
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.toast
+import org.joda.time.LocalDate
 import javax.inject.Inject
 
-class RaceDetailsActivity : AppCompatActivity() {
+class RaceDetailsActivity : DaggerActivity() {
 
     companion object {
-        private val SEASON_EXTRA_KEY = "season_extra"
-        private val ROUND_EXTRA_KEY = "round_extra"
 
-        fun openRaceDetailsIntent(season: String, round: String, context: Context): Intent {
-            return context.intentFor<RaceDetailsActivity>(SEASON_EXTRA_KEY to season, ROUND_EXTRA_KEY to round)
-        }
+        private const val SEASON_EXTRA_KEY = "season_extra"
+        private const val ROUND_EXTRA_KEY = "round_extra"
+
+        fun openRaceDetailsIntent(season: String, round: String, context: Context) =
+                Intent(context, RaceDetailsActivity::class.java).apply {
+                    val bundle = bundleOf(SEASON_EXTRA_KEY to season, ROUND_EXTRA_KEY to round)
+                    putExtras(bundle)
+                }
     }
 
     @Inject
     lateinit var backend: Backend
+    @Inject
+    lateinit var clock: Clock
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -47,30 +51,24 @@ class RaceDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_racedetails)
 
-        DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .backendModule(BackendModule())
-                .build()
-                .inject(this)
-
-        if (!intent.extras?.isEmpty!!) {
-            season = intent.getStringExtra(SEASON_EXTRA_KEY)
-            round = intent.getStringExtra(ROUND_EXTRA_KEY)
-        } else {
-            toast("Empty extras, close race details")
-            finish()
-        }
+        checkNotNull(intent.extras)
+        season = intent.getStringExtra(SEASON_EXTRA_KEY)
+        round = intent.getStringExtra(ROUND_EXTRA_KEY)
 
         backend.getRaceInfo(season, round)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.mrData.raceTable.races }
-                .filter({ it.isNotEmpty() })
+                .filter { it.isNotEmpty() }
                 .map { it[0] }
                 .doOnSuccess {
-                    fetchPoleman()
-                    fetchPodium()
-                    fetchFastestLap()
+                    if (LocalDate(clock.now()).isAfter(LocalDate(it.date))) {
+                        fetchPoleman()
+                        fetchPodium()
+                        fetchFastestLap()
+                    } else {
+                        toast("Not raced yet!")
+                    }
                 }
                 .subscribe(this::showRace, this::showError)
                 .toBeDisposed()
@@ -91,7 +89,7 @@ class RaceDetailsActivity : AppCompatActivity() {
         tvPlace.text = race.circuit.location.locality.plus(", ").plus(race.circuit.location.country)
     }
 
-    fun showError(throwable: Throwable) {
+    private fun showError(throwable: Throwable) {
         Log.i("RaceDetailsActivity", "onError " + throwable.message)
     }
 

@@ -32,31 +32,38 @@ ext {
 	rxjavaGroup = 'io.reactivex.rxjava2'
 	daggerGroup = 'com.google.dagger'
 
-	supportLibraryVersion = '26.1.0'
-	retrofitVersion = '2.3.0'
-	okhttpVersion = '3.9.1'
-	gsonVersion = '2.8.2'
-	rxjavaVersion = '2.1.7'
-	rxandroidVersion = '2.0.1'
-	daggerVersion = '2.13'
+	supportLibraryVersion = '27.1.1'
+	retrofitVersion = '2.4.0'
+	okhttpVersion = '3.11.0'
+	gsonVersion = '2.8.5'
+	rxjavaVersion = '2.2.2'
+	rxandroidVersion = '2.1.0'
+	daggerVersion = '2.16'
+	ktxVersion = '0.3'
+	jodaVersion = '2.10'
 }
 
 dependencies {
-	compile "com.android.support:appcompat-v7:$supportLibraryVersion"
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+	implementation "androidx.core:core-ktx:$ktxVersion"
 
-	compile "$retrofitGroup:retrofit:$retrofitVersion"
-	compile "$retrofitGroup:adapter-rxjava2:$retrofitVersion"
-	compile "$retrofitGroup:converter-gson:$retrofitVersion"
-	compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-	compile "com.google.code.gson:gson:$gsonVersion"
+	implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
+	implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
 
-	compile "$rxjavaGroup:rxandroid:$rxandroidVersion"
-	compile "$rxjavaGroup:rxjava:$rxjavaVersion"
+	implementation "$retrofitGroup:retrofit:$retrofitVersion"
+	implementation "$retrofitGroup:adapter-rxjava2:$retrofitVersion"
+	implementation "$retrofitGroup:converter-gson:$retrofitVersion"
+	implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+	implementation "com.google.code.gson:gson:$gsonVersion"
 
-	compile "$daggerGroup:dagger:$daggerVersion"
+	implementation "$rxjavaGroup:rxandroid:$rxandroidVersion"
+	implementation "$rxjavaGroup:rxjava:$rxjavaVersion"
+
+	implementation "joda-time:joda-time:$jodaVersion"
+
+	implementation "$daggerGroup:dagger:$daggerVersion"
 	kapt "$daggerGroup:dagger-compiler:$daggerVersion"
-
-	compile 'org.jetbrains.anko:anko-common:0.9'
-	compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+	implementation "$daggerGroup:dagger-android:$daggerVersion"
+	implementation "$daggerGroup:dagger-android-support:$daggerVersion"
+	kapt "$daggerGroup:dagger-android-processor:$daggerVersion"
 }

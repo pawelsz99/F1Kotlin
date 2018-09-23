@@ -1,17 +1,19 @@
 package can.siempredelao.f1kotlin.dagger
 
-import can.siempredelao.f1kotlin.MainActivity
-import can.siempredelao.f1kotlin.RaceDetailsActivity
+import can.siempredelao.f1kotlin.F1Application
 import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 /**
  * Created by david on 11.02.17.
  */
 @Singleton
-@Component(modules = arrayOf(AppModule::class, BackendModule::class))
-interface AppComponent {
+@Component(modules = [AppModule::class, BackendModule::class, AndroidInjectionModule::class, ActivityInjectorModule::class])
+interface AppComponent : AndroidInjector<F1Application> {
 
-    fun inject(activity: MainActivity)
-    fun inject(activity: RaceDetailsActivity)
+    @Component.Builder
+    abstract class Builder : AndroidInjector.Builder<F1Application>()
+
 }
