@@ -2,6 +2,7 @@ package can.siempredelao.f1kotlin.backend.model
 
 import com.google.gson.annotations.SerializedName
 
+/** Collection of races */
 class MRDataRaces(val xmlns: String,
                   val series: String,
                   val url: String,
