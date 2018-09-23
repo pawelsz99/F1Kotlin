@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import can.siempredelao.f1kotlin.backend.model.Race
 import kotlinx.android.synthetic.main.view_race_item.view.*
-import java.util.ArrayList
 
-class RacesAdapter(val onItemClickListener: OnRaceItemClickListener) : RecyclerView.Adapter<RacesAdapter.RaceViewHolder>() {
+class RacesAdapter(private val onItemClickListener: OnRaceItemClickListener) : RecyclerView.Adapter<RacesAdapter.RaceViewHolder>() {
 
-    private var raceList: MutableList<Race> = ArrayList<Race>()
+    private val raceList = mutableListOf<Race>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = RacesAdapter.RaceViewHolder(parent.inflate(R.layout.view_race_item))
 
@@ -33,6 +32,7 @@ class RacesAdapter(val onItemClickListener: OnRaceItemClickListener) : RecyclerV
     }
 
     interface OnRaceItemClickListener {
+        // TODO convert to a position based listener and move to onCreateViewHolder to avoid unnecessary memory allocations
         fun onRaceClick(season: String, round: String)
     }
 }

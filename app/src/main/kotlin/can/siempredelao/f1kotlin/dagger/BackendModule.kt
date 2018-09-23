@@ -16,7 +16,7 @@ import javax.inject.Singleton
 class BackendModule {
 
     companion object {
-        val ENDPOINT: String = "http://ergast.com/api/f1/" // so far only Formula 1, maybe in future Formula E
+        private const val ENDPOINT: String = "http://ergast.com/api/f1/" // so far only Formula 1, maybe in future Formula E
     }
 
     @Provides
@@ -37,18 +37,18 @@ class BackendModule {
     private fun okHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(BODY))
-                .addInterceptor({
-                                    // Hack to add ".json" to all requests
-                                    val url = it.request().url()
-                                    val lastEncodedPathSegment = url.encodedPathSegments()[url.encodedPathSegments().size - 1]
-                                    val modifiedLastEncodedPathSegment = lastEncodedPathSegment.plus(".json")
+                .addInterceptor {
+                    // Hack to add ".json" to all requests
+                    val url = it.request().url()
+                    val lastEncodedPathSegment = url.encodedPathSegments()[url.encodedPathSegments().lastIndex]
+                    val modifiedLastEncodedPathSegment = "$lastEncodedPathSegment.json"
 
-                                    val urlJsonAppended = url.newBuilder()
-                                            .removePathSegment(url.encodedPathSegments().size - 1)
-                                            .addEncodedPathSegments(modifiedLastEncodedPathSegment).build()
-                                    val requestJsonAppended = it.request().newBuilder().url(urlJsonAppended).build()
-                                    it.proceed(requestJsonAppended)
-                                })
+                    val urlJsonAppended = url.newBuilder()
+                            .removePathSegment(url.encodedPathSegments().lastIndex)
+                            .addEncodedPathSegments(modifiedLastEncodedPathSegment).build()
+                    val requestJsonAppended = it.request().newBuilder().url(urlJsonAppended).build()
+                    it.proceed(requestJsonAppended)
+                }
                 .build()
     }
 
