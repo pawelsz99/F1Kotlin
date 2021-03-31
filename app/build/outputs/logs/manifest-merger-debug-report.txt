@@ -1,0 +1,121 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+MERGED from [androidx.core:core-ktx:0.3] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\core-ktx-0.3.aar\40e330afc3eb351f459d9ea73cba4255\AndroidManifest.xml:2:1-7:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\5a38c72221b2cd6bba810a8ce3d81904\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.dagger:dagger-android-support:2.16] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\dagger-android-support-2.16.aar\97b4a7895ffff5bb6ca776f2d0ff539f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\10407fef48e0a19819811ea63d97638d\AndroidManifest.xml:17:1-22:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\rxandroid-2.1.0.aar\2ac36a2bd4bf4ab74a5d17e9e3f90a25\AndroidManifest.xml:15:1-20:12
+MERGED from [com.google.dagger:dagger-android:2.16] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\dagger-android-2.16.aar\916b6821dd7971699514cec0f99a57f3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\55858ac01383fb16719b077edf3db7e4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\7b3fc25bc53b173352505481074b783f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\a7d9ccb93789698abf2df3bfd479d25b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\91d8ad81e6d131c8445f8145296a0ac4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\16e5fe8a681b793d6652fc41c88a4b03\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\719cea1bd93c3e254b047413e71a824d\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\b6237bca09ee74ab9c9438ab747ac17a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\5558ca5bea23008acdfc3de4d3c7e49b\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\425942ee1c308b0c5b33105163cdba8a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\ac923679052e11a9043aa8f96513d6c5\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+	package
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:11-46
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:2:1-25:12
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:3:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:5:5-66
+	android:name
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:5:22-64
+application
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:7:5-23:19
+	android:supportsRtl
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:11:9-41
+	android:icon
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:13:9-40
+	android:name
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:8:9-38
+activity#can.siempredelao.f1kotlin.MainActivity
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:14:9-20:20
+	android:name
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:14:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:15:13-19:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:16:17-68
+	android:name
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:16:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:18:17-76
+	android:name
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:18:27-74
+activity#can.siempredelao.f1kotlin.RaceDetailsActivity
+ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:21:9-22:20
+	android:name
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml:21:19-54
+uses-sdk
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+MERGED from [androidx.core:core-ktx:0.3] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\core-ktx-0.3.aar\40e330afc3eb351f459d9ea73cba4255\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:0.3] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\core-ktx-0.3.aar\40e330afc3eb351f459d9ea73cba4255\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\5a38c72221b2cd6bba810a8ce3d81904\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\5a38c72221b2cd6bba810a8ce3d81904\AndroidManifest.xml:20:5-44
+MERGED from [com.google.dagger:dagger-android-support:2.16] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\dagger-android-support-2.16.aar\97b4a7895ffff5bb6ca776f2d0ff539f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.dagger:dagger-android-support:2.16] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\dagger-android-support-2.16.aar\97b4a7895ffff5bb6ca776f2d0ff539f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\10407fef48e0a19819811ea63d97638d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\10407fef48e0a19819811ea63d97638d\AndroidManifest.xml:20:5-44
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\rxandroid-2.1.0.aar\2ac36a2bd4bf4ab74a5d17e9e3f90a25\AndroidManifest.xml:18:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\rxandroid-2.1.0.aar\2ac36a2bd4bf4ab74a5d17e9e3f90a25\AndroidManifest.xml:18:5-43
+MERGED from [com.google.dagger:dagger-android:2.16] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\dagger-android-2.16.aar\916b6821dd7971699514cec0f99a57f3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.dagger:dagger-android:2.16] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\dagger-android-2.16.aar\916b6821dd7971699514cec0f99a57f3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\55858ac01383fb16719b077edf3db7e4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\55858ac01383fb16719b077edf3db7e4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\7b3fc25bc53b173352505481074b783f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\7b3fc25bc53b173352505481074b783f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\a7d9ccb93789698abf2df3bfd479d25b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\a7d9ccb93789698abf2df3bfd479d25b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\91d8ad81e6d131c8445f8145296a0ac4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\91d8ad81e6d131c8445f8145296a0ac4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\16e5fe8a681b793d6652fc41c88a4b03\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\16e5fe8a681b793d6652fc41c88a4b03\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\719cea1bd93c3e254b047413e71a824d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\719cea1bd93c3e254b047413e71a824d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\b6237bca09ee74ab9c9438ab747ac17a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\b6237bca09ee74ab9c9438ab747ac17a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\5558ca5bea23008acdfc3de4d3c7e49b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\5558ca5bea23008acdfc3de4d3c7e49b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\425942ee1c308b0c5b33105163cdba8a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\425942ee1c308b0c5b33105163cdba8a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\ac923679052e11a9043aa8f96513d6c5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\pawel\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\ac923679052e11a9043aa8f96513d6c5\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\pawel\OneDrive - NESCol\test projects\F1Kotlin E D\app\src\main\AndroidManifest.xml
