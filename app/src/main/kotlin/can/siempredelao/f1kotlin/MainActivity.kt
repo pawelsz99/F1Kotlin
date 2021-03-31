@@ -38,7 +38,7 @@ class MainActivity : DaggerActivity() {
             adapter = racesAdapter
         }
 
-        backend.getRacesBySeason("2018")
+        backend.getRacesBySeason("2020")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.mrData.raceTable.races }
@@ -51,7 +51,7 @@ class MainActivity : DaggerActivity() {
         compositeDisposable.dispose()
     }
 
-    fun Disposable.toBeDisposed() {
+    private fun Disposable.toBeDisposed() {
         compositeDisposable.add(this)
     }
 }

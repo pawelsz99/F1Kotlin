@@ -25,7 +25,7 @@ class RacesAdapter(private val onItemClickListener: OnRaceItemClickListener) : R
 
         fun bind(race: Race, onItemClickListener: OnRaceItemClickListener) {
             with(itemView) {
-                tvRace.text = race.raceName
+                this.tvRace.text = race.raceName
                 setOnClickListener { onItemClickListener.onRaceClick(race.season, race.round) }
             }
         }
